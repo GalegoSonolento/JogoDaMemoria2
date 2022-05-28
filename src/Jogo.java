@@ -163,6 +163,7 @@ public class Jogo {
     }
     /*Esse método alterna entre os jogadores durante a partida.*/
     public void rodaJogo(){
+        //Colocar o método de imprimir cenário aqui
         boolean perdeu = true;
         do {
             for (int i=0; i< players.length; i++){
