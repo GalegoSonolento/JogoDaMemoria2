@@ -1,9 +1,14 @@
 public class Jogo {
     private Nivel[] level;
     private Jogador[] players;
+    private int cont = 0;
+    private int quantJogadores;
+    private int quantNiveis;
 
     //Inicializa todos os níveis do jogo antes de começar
     public Jogo(int quantJogadores, int quantNiveis){
+        this.quantJogadores = quantJogadores;
+        this.quantNiveis = quantNiveis;
         level = new Nivel[quantNiveis];
         for (int i=0; i<level.length; i++){
             level[i] = new Nivel(i+1);
@@ -163,7 +168,15 @@ public class Jogo {
     }
     /*Esse método alterna entre os jogadores durante a partida.*/
     public void rodaJogo(){
+        if (cont != 0){
+            level = new Nivel[quantNiveis];
+            for (int i=0; i<level.length; i++){
+                level[i] = new Nivel(i+1);
+                level[i].inicializaNivel(quantJogadores);
+            }
+        }
         //Colocar o método de imprimir cenário aqui
+        imprimeCenario();
         boolean perdeu = true;
         do {
             for (int i=0; i< players.length; i++){
@@ -225,6 +238,7 @@ public class Jogo {
             }
             else if (escolha == 2){
                 rodaJogo();
+                cont++;
                 char opcao = Teclado.leChar("Deseja voltar ao menu para jogar novamente? [qualquer tecla/N] ");
                 if (opcao == 'N') break;
             }
